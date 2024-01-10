@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { useSelector , useDispatch } from "react-redux";
 import { addUser } from "../redux/auth/authSlice";
 import axios from "axios";
+import { SelectUser } from "../redux/auth/authSlice"; 
 import { useNavigate } from "react-router";
 function SignUp() {
-
+  const user = useSelector(SelectUser); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [data, setData] = useState({
@@ -52,7 +53,10 @@ function SignUp() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+    <>
+    {
+      !user?(
+<div className="flex flex-col items-center justify-center h-screen bg-gray-200">
       <InputField
         label="full name"
         name="full_name"
@@ -84,8 +88,16 @@ function SignUp() {
       <button onClick ={onsubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 transition duration-300">
         sign up
       </button>
-      <Link to="/login"> if you have an account , please login</Link>
+      <Link to="/login" className="mt-5 text-blue-500"> if you have an account , please login</Link>
     </div>
+      ):(
+        <div className="">
+          <Link to ="/profile">you are already logged in</Link>
+        </div>
+      )
+    }
+    
+    </>
   );
 }
 

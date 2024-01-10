@@ -3,6 +3,7 @@ import { SelectUser } from "../redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import InputField from "./InputField";
+import { Link } from "react-router-dom";
 
 function RestPassword() {
   const user = useSelector(SelectUser);
@@ -47,9 +48,9 @@ function RestPassword() {
   };
 
   return (
-    <div className="mt-10 p-20 ">
+    <div >
       {user ? (
-        <div>
+        <div className="mt-10 p-20 ">
           <label>New password</label>
           <InputField
             type="password"
@@ -73,7 +74,9 @@ function RestPassword() {
           </button>
         </div>
       ) : (
-        ""
+        <div>
+          <Link to = "/login">please login</Link>
+        </div>
       )}
     </div>
   );

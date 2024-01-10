@@ -2,9 +2,10 @@ import React from "react";
 
 import { useState } from "react";
 import axios from "axios";
-import {  useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import InputField from "./InputField";
 import { addUser } from "../redux/auth/authSlice";
+import { SelectUser } from "../redux/auth/authSlice";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 function Login() {
@@ -13,7 +14,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
-
+  const user = useSelector(SelectUser);
   const onChangeUsername = (event) => {
     setUsername(event.target.value);
   };
@@ -37,7 +38,6 @@ function Login() {
         }
       );
 
-
       dispatch(addUser(response.data));
       navigate("/profile");
     } catch (error) {
@@ -51,36 +51,49 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
-      <p className="text-2xl mb-4 text-red-500 font-semibold">{error.detail}</p>
+    <>
+      {!user ? (
+        <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+          <p className="text-2xl mb-4 text-red-500 font-semibold">
+            {error.detail}
+          </p>
 
-      <InputField
-        label="Username"
-        name="username"
-        value={username}
-        type="email"
-        onChange={onChangeUsername}
-        placeholder="Username"
-      />
-      <InputField
-        label="Password"
-        name="password"
-        value={password}
-        type="password"
-        onChange={onChangPassword}
-        placeholder="Password"
-      />
+          <InputField
+            label="Username"
+            name="username"
+            value={username}
+            type="email"
+            onChange={onChangeUsername}
+            placeholder="Username"
+          />
+          <InputField
+            label="Password"
+            name="password"
+            value={password}
+            type="password"
+            onChange={onChangPassword}
+            placeholder="Password"
+          />
 
-      <button
-        onClick={onSubmitHandler}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 transition duration-300"
-      >
-        Login
-      </button>
-     <Link to='/sign-up'> if you dont have an account , please sign up</Link>
+          <button
+            onClick={onSubmitHandler}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 transition duration-300"
+          >
+            Login
+          </button>
+          <Link to="/sign-up" className="mt-3 text-blue-500">
+            
+            if you dont have an account , please sign up
+          </Link>
 
-     <Link to='/forget-password'>forget a password</Link>
-    </div>
+          <Link to="/forget-password" className="mt-3">forget a password</Link>
+        </div>
+      ) : (
+        <div>
+          <Link to="/profile">go to profile</Link>
+        </div>
+      )}
+    </>
   );
 }
 
