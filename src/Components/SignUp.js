@@ -12,8 +12,7 @@ function SignUp() {
   const [data, setData] = useState({
     password : "" , 
     email : "" ,
-    first_name : "" ,
-    last_name : "" ,
+    full_name : "" ,
   })
 
 
@@ -23,6 +22,7 @@ function SignUp() {
 
   const onsubmit = async() => {  
 
+    console.log(data);
    
     try {
       const response = await axios.post(
@@ -54,22 +54,15 @@ function SignUp() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
       <InputField
-        label="firs name"
-        name="first_name"
-        value={data.first_name}
+        label="full name"
+        name="full_name"
+        value={data.full_name}
         type="text"
 
         onChange={onChange}
-        placeholder="first name"
+        placeholder="full name"
       />
-         <InputField
-        label="last name"
-        name="last_name"
-        value={data.last_name}
-        type="text"
-        onChange={onChange}
-        placeholder="last name"
-      />
+       
          <InputField
         label="email"
         name="email"

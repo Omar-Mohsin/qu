@@ -6,8 +6,11 @@ import { useSelector } from "react-redux";
 function Profile() {
   const user = useSelector(SelectUser);
   const navigate = useNavigate();
-  const onClickRestPassword = () => {
+  const navigateRestPassword = () => {
     navigate("/rest-password");
+  };
+  const navigateEditProfile= () => {
+    navigate("/edit-profile");
   };
   return (
     <>
@@ -15,7 +18,8 @@ function Profile() {
         <div>
           <div>
             <UserInformation />
-            <button onClick={onClickRestPassword}>rest password</button>
+            <button onClick={navigateRestPassword}>rest password</button>
+            <button onClick={navigateEditProfile}>edit profile</button>
             <button>Log out</button>
           </div>
         </div>
