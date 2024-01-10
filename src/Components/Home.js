@@ -1,19 +1,21 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { SelectUser } from '../redux/auth/authSlice'
-import Welcome from './Welcome'
-import Login from './Login'
+import React, { useEffect, useState } from "react";
+
+import axios from "axios";
 function Home() {
-    const user =  useSelector(SelectUser);
+  const [welcomeMessage, setWelcomeMessage] = useState();
+
+  useEffect(() => {
+    axios.get("http://bashars.eu:5555/api/v1/").then((res) => {
+      setWelcomeMessage(res.data.message);
+    });
+  }, []);
+
+  console.log(welcomeMessage);
   return (
     <div>
-
-    {
-      user ? <Welcome/> : <Login/>
-    }
-    
-   </div>
-  )
+      {welcomeMessage ? <h1>{welcomeMessage}</h1> : <h1>Loading...</h1>}
+    </div>
+  );
 }
 
-export default Home
+export default Home;

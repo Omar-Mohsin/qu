@@ -2,14 +2,14 @@ import React from "react";
 
 import { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import InputField from "./InputField";
 import { addUser } from "../redux/auth/authSlice";
-import { SelectUser } from "../redux/auth/authSlice";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 function Login() {
   const dispatch = useDispatch();
-
-  const user = useSelector(SelectUser);
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
@@ -37,7 +37,9 @@ function Login() {
         }
       );
 
+
       dispatch(addUser(response.data));
+      navigate("/profile");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setError(error.response.data);
@@ -75,6 +77,9 @@ function Login() {
       >
         Login
       </button>
+     <Link to='/sign-up'> if you dont have an account , please sign up</Link>
+
+     <Link to='/forget-password'>forget a password</Link>
     </div>
   );
 }
