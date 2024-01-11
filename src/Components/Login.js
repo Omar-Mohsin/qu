@@ -1,11 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
 import InputField from "./InputField";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../redux/auth/authSlice";
+import axios from "axios";
 import { SelectUser } from "../redux/auth/authSlice";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 function Login() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function Login() {
     setUsername(event.target.value);
   };
 
-  const onChangPassword = (event) => {
+  const onChangePassword = (event) => {
     setPassword(event.target.value);
   };
 
@@ -30,7 +30,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://bashars.eu:5555/api/v1/login/access-token",
+        "http://localhost:80/api/v1/login/access-token",
         formData,
         {
           headers: {
@@ -53,15 +53,15 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200 ">
+    <div className="min-h-screen flex items-center justify-center bg-gray-200">
       {!user ? (
-        <div className="bg-white p-8 rounded-lg shadow-md w-2/4">
-          <h1 className="text-4xl mb-4 text-blue-600">
+        <div className="bg-white p-8 rounded-lg shadow-md w-1/4 text-gray-500">
+          <h1 className="text-4xl mb-4 text-blue-600 font-semibold text-center">
             Welcome Back!
           </h1>
           <p className="text-red-500 mb-4">{error.detail}</p>
 
-          <div className="h-48 flex flex-col justify-between mb-6">
+          <div className="space-y-4">
             <InputField
               label="Username"
               name="username"
@@ -69,26 +69,25 @@ function Login() {
               type="email"
               onChange={onChangeUsername}
               placeholder="Username"
-              className="mb-4 h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <InputField
               label="Password"
               name="password"
               value={password}
               type="password"
-              onChange={onChangPassword}
+              onChange={onChangePassword}
               placeholder="Password"
-              className="mb-4 h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div className="flex items-center justify-between w-auto mt-6">
+
+          <div className="flex items-center justify-between mt-6">
             <button
               onClick={onSubmitHandler}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded  transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Login
             </button>
-            <Link to="/forget-password" className="text-blue-500 ml-4 ">
+            <Link to="/forget-password" className="text-blue-500 ml-4">
               Forgot your password?
             </Link>
           </div>
@@ -100,9 +99,10 @@ function Login() {
           </div>
         </div>
       ) : (
-        <div>
-          <Link to="/profile" className="text-blue-500">
-            Go to profile
+        <div className="text-center text-black">
+          <p className="text-2xl">You are already logged in.</p>
+          <Link to="/profile" className="text-blue-600 mt-2 inline-block">
+            Go to Profile
           </Link>
         </div>
       )}

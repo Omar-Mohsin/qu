@@ -26,9 +26,14 @@ function Navbar() {
 
         <div className="flex items-center">
           {user ? (
-            <Link to="/profile" className="ml-4 text-lg hover:text-gray-300">
-              Profile
-            </Link>
+            <>
+              <Link to="/campaign" className="ml-4 text-lg hover:text-gray-300">
+                Campaign
+              </Link>
+              <Link to="/profile" className="ml-4 text-lg hover:text-gray-300">
+                Profile
+              </Link>
+            </>
           ) : null}
 
           {user ? (

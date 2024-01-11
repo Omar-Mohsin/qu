@@ -24,7 +24,7 @@ function EditProfile() {
   const onSubmitHandler = async () => {
     try {
       const response = await axios.put(
-        "http://bashars.eu:5555/api/v1/users/me",
+        "http://localhost:80/api/v1/users/me",
         data,
         {
           headers: {
@@ -64,7 +64,7 @@ function EditProfile() {
           />
 
           <InputField
-            label="Change Password"
+            label="Password"
             name="password"
             value={data?.password}
             type="password"

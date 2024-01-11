@@ -2,7 +2,7 @@ import React from "react";
 import UserInformation from "./UserInformation";
 import { SelectUser } from "../redux/auth/authSlice";
 import { useNavigate } from "react-router-dom";
-import { useSelector  , useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { removeUser } from "../redux/auth/authSlice";
 import { Link } from "react-router-dom";
 
@@ -28,9 +28,7 @@ function Profile() {
     <div className="min-h-screen flex items-center justify-center g-bgray-100">
       {user ? (
         <div className="bg-white p-8 rounded-lg shadow-md w-2/4">
-          <h1 className="text-3xl mb-4 text-blue-500 font-semibold">
-            Profile
-          </h1>
+          <h1 className="text-3xl mb-4 text-blue-500 font-semibold">Profile</h1>
           <div className="mb-6">
             <UserInformation />
           </div>

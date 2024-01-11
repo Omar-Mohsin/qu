@@ -15,6 +15,7 @@ function SignUp() {
     password: "",
     email: "",
     full_name: "",
+    confirm_password: "",
   });
 
   const onChange = (e) => {
@@ -22,9 +23,14 @@ function SignUp() {
   };
 
   const onSubmit = async () => {
+    if (data.password !== data.confirm_password) {
+      alert("Passwords do not match");
+      return;
+    }
+    console.log(data);
     try {
       const response = await axios.post(
-        "http://bashars.eu:5555/api/v1/users/open",
+        "http://localhost:80/api/v1/users/open",
         data,
         {
           headers: {
@@ -37,7 +43,7 @@ function SignUp() {
       dispatch(addUser(response.data));
       navigate("/profile");
     } catch (error) {
-      if (error.response && error.response.status === 400) {
+      if (error.response) {
         console.error(error.response.data);
       } else {
         console.error("An error occurred:", error.message);
@@ -49,10 +55,12 @@ function SignUp() {
     <>
       {!user ? (
         <div className="min-h-screen flex items-center justify-center bg-gray-200">
-          <div className="bg-white p-8 rounded-lg shadow-md w-2/4">
-            <h1 className="text-4xl mb-4 text-blue-600">Sign Up</h1>
+          <div className="bg-white p-8 rounded-lg shadow-md w-1/4 text-gray-500">
+            <h1 className="text-4xl mb-6 text-blue-600 font-semibold text-center">
+              Sign Up
+            </h1>
 
-            <div className="h-48 flex flex-col justify-between mb-6">
+            <div className="space-y-4">
               <InputField
                 label="Full Name"
                 name="full_name"
@@ -60,7 +68,6 @@ function SignUp() {
                 type="text"
                 onChange={onChange}
                 placeholder="Full Name"
-                className="mb-4 h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <InputField
                 label="Email"
@@ -69,7 +76,6 @@ function SignUp() {
                 onChange={onChange}
                 type="email"
                 placeholder="Email"
-                className="mb-4 h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <InputField
                 label="Password"
@@ -78,26 +84,35 @@ function SignUp() {
                 onChange={onChange}
                 type="password"
                 placeholder="Password"
-                className="mb-4 h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <InputField
+                label="Confirm Password"
+                name="confirm_password"
+                value={data.confirm_password}
+                onChange={onChange}
+                type="password"
+                placeholder="Confirm Password"
               />
             </div>
-            <div className="flex items-center justify-between w-auto mt-20">
+
+            <div className="flex items-center justify-between mt-8">
               <button
                 onClick={onSubmit}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded mt-6 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Sign Up
               </button>
-              <Link to="/login" className="text-blue-500 ml-4 mt-6">
+              <Link to="/login" className="text-blue-500 ml-4">
                 Already have an account? Login here.
               </Link>
             </div>
           </div>
         </div>
       ) : (
-        <div>
-          <Link to="/profile" className="text-blue-500">
-            You are already logged in.
+        <div className="text-center text-white">
+          <p className="text-2xl">You are already logged in.</p>
+          <Link to="/profile" className="text-blue-300 mt-2 inline-block">
+            Go to Profile
           </Link>
         </div>
       )}

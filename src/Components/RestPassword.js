@@ -31,7 +31,7 @@ function ResetPassword() {
 
     try {
       const response = await axios.post(
-        "http://bashars.eu:5555/api/v1/reset-password/",
+        "http://localhost:80/api/v1/reset-password/",
         data,
         {
           headers: {
@@ -41,7 +41,7 @@ function ResetPassword() {
       );
       console.log(response.data);
     } catch (error) {
-      if (error.response && error.response.status === 422) {
+      if (error.response) {
         console.error(error.response.data);
       } else {
         console.error("An error occurred:", error.message);
@@ -77,11 +77,12 @@ function ResetPassword() {
           >
             Reset Password
           </button>
-
         </div>
       ) : (
         <div>
-          <Link to="/login" className="text-blue-500">Please login</Link>
+          <Link to="/login" className="text-blue-500">
+            Please login
+          </Link>
         </div>
       )}
     </div>

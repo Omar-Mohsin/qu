@@ -5,7 +5,7 @@ function Home() {
   const [welcomeMessage, setWelcomeMessage] = useState();
 
   useEffect(() => {
-    axios.get("http://bashars.eu:5555/api/v1/").then((res) => {
+    axios.get("http://localhost:80/api/v1/").then((res) => {
       setWelcomeMessage(res.data.message);
     });
   }, []);

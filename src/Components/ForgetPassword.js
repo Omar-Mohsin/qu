@@ -17,7 +17,7 @@ function ForgetPassword() {
 
     try {
       const response = await axios.post(
-        `http://bashars.eu:5555/api/v1/password-recovery/${email}`,
+        `http://localhost:80/api/v1/password-recovery/${email}`,
         {
           email: email,
         },

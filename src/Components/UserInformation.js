@@ -14,7 +14,7 @@ function UserInformation() {
 
   useEffect(() => {
     axios
-      .get(`http://bashars.eu:5555/api/v1/users/me`, {
+      .get(`http://localhost:80/api/v1/users/me`, {
         headers: {
           Authorization: `Bearer ${user?.access_token}`,
         },
@@ -31,9 +31,8 @@ function UserInformation() {
 
   return (
     <div className="flex items-center">
-      {user ? (
+      {true ? (
         <div className="bg-white p-8 rounded-lg w-2/4">
-          
           <div className="mb-4">
             <p className="font-bold">Email:</p>
             <p>{data?.email}</p>
