@@ -5,6 +5,7 @@ import { addUserDetails } from "../redux/auth/authSlice";
 import axios from "axios";
 import { SelectUserDetails } from "../redux/auth/authSlice";
 import { Link } from "react-router-dom";
+
 function UserInformation() {
   const user = useSelector(SelectUser);
   const userDetails = useSelector(SelectUserDetails);
@@ -15,7 +16,7 @@ function UserInformation() {
     axios
       .get(`http://bashars.eu:5555/api/v1/users/me`, {
         headers: {
-          Authorization: `Bearer ${user.access_token}`,
+          Authorization: `Bearer ${user?.access_token}`,
         },
       })
       .then((response) => {
@@ -27,17 +28,28 @@ function UserInformation() {
         console.log(error);
       });
   }, [user]);
+
   return (
-    <div>
+    <div className="flex items-center">
       {user ? (
-        <div>
-          <h1> email :{data?.email}</h1>
-          <h1> full name : {userDetails?.full_name}</h1>
-          <h1>is active : {data?.is_active ? "yes" : "no"}</h1>
+        <div className="bg-white p-8 rounded-lg w-2/4">
+          
+          <div className="mb-4">
+            <p className="font-bold">Email:</p>
+            <p>{data?.email}</p>
+          </div>
+          <div className="mb-4">
+            <p className="font-bold">Full Name:</p>
+            <p>{userDetails?.full_name}</p>
+          </div>
+          <div className="flex">
+            <p className="font-bold">Is Active : </p>
+            <p>{data?.is_active ? " Yes" : " No"}</p>
+          </div>
         </div>
       ) : (
-        <Link to="/login">
-          <h1>Not Logged in</h1>
+        <Link to="/login" className="text-blue-500">
+          <h1>Not Logged in. Please login.</h1>
         </Link>
       )}
     </div>

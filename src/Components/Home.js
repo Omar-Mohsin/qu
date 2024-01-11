@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
+
 function Home() {
   const [welcomeMessage, setWelcomeMessage] = useState();
 
@@ -10,10 +10,16 @@ function Home() {
     });
   }, []);
 
-  console.log(welcomeMessage);
   return (
-    <div>
-      {welcomeMessage ? <h1>{welcomeMessage}</h1> : <h1>Loading...</h1>}
+    <div className="min-h-screen flex items-center justify-center text-black">
+      <div className="text-center">
+        {welcomeMessage ? (
+          <h1 className="text-4xl font-bold mb-4">{welcomeMessage}</h1>
+        ) : (
+          <h1 className="text-4xl font-bold">Loading...</h1>
+        )}
+        <p className="text-lg">Welcome to your awesome application!</p>
+      </div>
     </div>
   );
 }
