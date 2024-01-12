@@ -11,6 +11,7 @@ import SignUp from "./Components/SignUp";
 import ForgetPassword from "./Components/ForgetPassword";
 import EditProfile from "./Components/EditProfile";
 import Campaign from "./Components/Campaign";
+import CreateCampaign from "./Components/CreateCampaign";
 function App() {
   const user = useSelector(SelectUser);
   console.log(user);
@@ -34,6 +35,7 @@ function App() {
             <Route path="/edit-profile" element={<EditProfile />} />
 
             <Route path="/campaign" element={<Campaign />} />
+            <Route path="/create-campaign" element={<CreateCampaign />} />
             
              </Route>
 
