@@ -32,7 +32,7 @@ function UserInformation() {
   return (
     <div className="flex items-center">
       {true ? (
-        <div className="bg-white p-8 rounded-lg w-2/4">
+        <div className="bg-white p-4 md:p-8 rounded-lg md:w-2/3 lg:w-1/2 xl:w-1/3">
           <div className="mb-4">
             <p className="font-bold">Email:</p>
             <p>{data?.email}</p>

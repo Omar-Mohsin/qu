@@ -50,8 +50,8 @@ function EditProfile() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       {user ? (
-        <div className="bg-white p-8 rounded-lg shadow-md w-2/4">
-          <h1 className="text-4xl mb-4 text-blue-600">Edit Profile</h1>
+        <div className="bg-white p-4 md:p-8 rounded-lg shadow-md md:w-2/3 lg:w-1/2 xl:w-1/3">
+          <h1 className="text-xl md:text-4xl mb-4 text-blue-600">Edit Profile</h1>
 
           <InputField
             label="Change Full Name"
@@ -60,7 +60,7 @@ function EditProfile() {
             type="text"
             onChange={onChangeprofile}
             placeholder="Full Name"
-            className="mb-4 h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mb-4 h-12 md:h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <InputField
@@ -70,12 +70,12 @@ function EditProfile() {
             type="password"
             onChange={onChangeprofile}
             placeholder="Password"
-            className="mb-4 h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mb-4 h-12 md:h-14 border-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <button
             onClick={onSubmitHandler}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded mt-6 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 md:py-3 px-4 md:px-6 rounded mt-4 md:mt-6 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Save
           </button>
@@ -84,7 +84,7 @@ function EditProfile() {
           {message ? <div className="text-green-500 mt-4">{message}</div> : ""}
         </div>
       ) : (
-        <div>
+        <div className="text-center">
           <Link to="/login" className="text-blue-500">
             Please log in
           </Link>

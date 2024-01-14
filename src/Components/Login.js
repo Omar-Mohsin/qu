@@ -54,59 +54,59 @@ function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      {!user ? (
-        <div className="bg-white p-8 rounded-lg shadow-md w-1/4 text-gray-500">
-          <h1 className="text-4xl mb-4 text-blue-600 font-semibold text-center">
-            Welcome Back!
-          </h1>
-          <p className="text-red-500 mb-4">{error.detail}</p>
+    {!user ? (
+      <div className="bg-white p-4 md:p-8 rounded-lg shadow-md md:w-1/2 lg:w-1/3 text-gray-500">
+        <h1 className="text-2xl md:text-4xl mb-4 text-blue-600 font-semibold text-center">
+          Welcome Back!
+        </h1>
+        <p className="text-red-500 mb-4">{error.detail}</p>
 
-          <div className="space-y-4">
-            <InputField
-              label="Username"
-              name="username"
-              value={username}
-              type="email"
-              onChange={onChangeUsername}
-              placeholder="Username"
-            />
-            <InputField
-              label="Password"
-              name="password"
-              value={password}
-              type="password"
-              onChange={onChangePassword}
-              placeholder="Password"
-            />
-          </div>
-
-          <div className="flex items-center justify-between mt-6">
-            <button
-              onClick={onSubmitHandler}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              Login
-            </button>
-            <Link to="/forget-password" className="text-blue-500 ml-4">
-              Forgot your password?
-            </Link>
-          </div>
-
-          <div className="flex justify-between items-center mt-8">
-            <Link to="/sign-up" className="text-blue-500">
-              Don't have an account? Sign up here.
-            </Link>
-          </div>
+        <div className="space-y-4">
+          <InputField
+            label="Username"
+            name="username"
+            value={username}
+            type="email"
+            onChange={onChangeUsername}
+            placeholder="Username"
+          />
+          <InputField
+            label="Password"
+            name="password"
+            value={password}
+            type="password"
+            onChange={onChangePassword}
+            placeholder="Password"
+          />
         </div>
-      ) : (
-        <div className="text-center text-black">
-          <p className="text-2xl">You are already logged in.</p>
-          <Link to="/profile" className="text-blue-600 mt-2 inline-block">
-            Go to Profile
+
+        <div className="flex flex-col md:flex-row items-center justify-between mt-6">
+          <button
+            onClick={onSubmitHandler}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 md:mb-0"
+          >
+            Login
+          </button>
+          <Link to="/forget-password" className="text-blue-500 md:ml-4">
+            Forgot your password?
           </Link>
         </div>
-      )}
-    </div>
+
+        <div className="flex justify-center md:justify-between items-center mt-8">
+          <Link to="/sign-up" className="text-blue-500 mb-4 md:mb-0">
+            Don't have an account? Sign up here.
+          </Link>
+        </div>
+      </div>
+    ) : (
+      <div className="text-center text-black">
+        <p className="text-xl md:text-2xl">You are already logged in.</p>
+        <Link to="/profile" className="text-blue-600 mt-2 inline-block">
+          Go to Profile
+        </Link>
+      </div>
+    )}
+  </div>
   );
 }
 
