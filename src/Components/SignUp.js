@@ -27,7 +27,6 @@ function SignUp() {
       alert("Passwords do not match");
       return;
     }
-    console.log(data);
     try {
       const response = await axios.post(
         "http://localhost:80/api/v1/users/open",

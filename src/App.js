@@ -13,7 +13,6 @@ import EditProfile from "./Components/EditProfile";
 import CreateCampaign from "./Components/CreateCampaign";
 function App() {
   const user = useSelector(SelectUser);
-  console.log(user);
 
   return (
     <>

@@ -18,7 +18,7 @@ function UserInformation() {
             <p className="font-bold">Full Name:</p>
             <p>{userDetails?.full_name}</p>
           </div>
-          <div className="flex">
+          <div className="">
             <p className="font-bold">Is Active : </p>
             <p>{userDetails?.is_active ? " Yes" : " No"}</p>
           </div>

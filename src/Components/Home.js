@@ -72,15 +72,18 @@ function Home() {
                 <div className="mb-2">
                   <span className="font-semibold">Keywords:</span>{" "}
                   {campaign.target.keywords?.map((keyword, index) => (
-                    <span key={index} className="bg-blue-200 text-blue-800 px-2 py-1 rounded-full mr-2">
+                    <span
+                      key={index}
+                      className="bg-blue-200 text-blue-800 px-2 py-1 rounded-full mr-2"
+                    >
                       {keyword}
                     </span>
                   ))}
                 </div>
                 <div>
                   <span className="font-semibold">Platforms:</span>{" "}
-                  {campaign.platform?.map((platform) => (
-                    <span key={platform.id} className="text-gray-600 mr-2">
+                  {campaign.platform?.map((platform , index) => (
+                    <span key={index} className="text-gray-600 mr-2">
                       {platform}
                     </span>
                   ))}
@@ -93,14 +96,13 @@ function Home() {
           </div>
         </div>
       ) : (
-       <div className="flex justify-center items-center h-screen">
-  <Link to="/login">
-    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Login
-    </button>
-  </Link>
-</div>
-
+        <>
+        <Link to={"/login"}>
+          <h1 className="text-4xl mb-6 text-red-600 font-semibold">
+            Please Login
+          </h1>
+        </Link>
+      </>
       )}
     </div>
   );
