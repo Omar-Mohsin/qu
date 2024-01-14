@@ -18,7 +18,7 @@ function Home() {
         ) : (
           <h1 className="text-4xl font-bold">Loading...</h1>
         )}
-        <p className="text-lg">Welcome to your awesome application!</p>
+        <p className="text-lg">Welcome to our application!</p>
       </div>
     </div>
   );
