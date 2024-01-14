@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SelectUser } from "../redux/auth/authSlice";
@@ -9,6 +9,11 @@ function Navbar() {
   const navigate = useNavigate();
   const user = useSelector(SelectUser);
   const dispatch = useDispatch();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   const logout = () => {
     dispatch(removeUser());
@@ -24,14 +29,14 @@ function Navbar() {
           </Link>
         </div>
 
-        <div className="flex items-center">
+        <div className="hidden md:flex items-center">
           {user ? (
             <>
               <Link
-                to="/campaign"
+                to="/create-campaign"
                 className="ml-2 md:ml-4 text-sm md:text-lg hover:text-gray-300"
               >
-                Campaign
+                Create Campaign
               </Link>
               <Link
                 to="/profile"
@@ -39,16 +44,13 @@ function Navbar() {
               >
                 Profile
               </Link>
+              <p
+                className="ml-4 md:ml-6 cursor-pointer text-sm md:text-lg hover:text-gray-300"
+                onClick={logout}
+              >
+                Logout
+              </p>
             </>
-          ) : null}
-
-          {user ? (
-            <p
-              className="ml-4 md:ml-6 cursor-pointer text-sm md:text-lg hover:text-gray-300"
-              onClick={logout}
-            >
-              Logout
-            </p>
           ) : (
             <Link
               to="/login"
@@ -58,6 +60,43 @@ function Navbar() {
             </Link>
           )}
         </div>
+
+        {/* Mobile Navigation Toggle */}
+        <div className="md:hidden">
+          <button
+            className="text-white focus:outline-none"
+            onClick={toggleMobileMenu}
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <div
+        className={`md:hidden bg-blue-600 text-white p-2 ${
+          mobileMenuOpen ? "block" : "hidden"
+        }`}
+      >
+        {user && (
+          <>
+            <Link to="/create-campaign" className="block py-1">
+              Create Campaign
+            </Link>
+            <Link to="/profile" className="block py-1">
+              Profile
+            </Link>
+            <p className="block py-1 cursor-pointer" onClick={logout}>
+              Logout
+            </p>
+          </>
+        )}
+        {!user && (
+          <Link to="/login" className="block py-1">
+            Login
+          </Link>
+        )}
+
+
       </div>
 
       <Outlet />

@@ -41,7 +41,7 @@ function Login() {
       );
 
       dispatch(addUser(response.data));
-      navigate("/profile");
+      navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setError(error.response.data);

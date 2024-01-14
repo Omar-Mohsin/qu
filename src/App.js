@@ -10,7 +10,6 @@ import RestPassword from "./Components/RestPassword";
 import SignUp from "./Components/SignUp";
 import ForgetPassword from "./Components/ForgetPassword";
 import EditProfile from "./Components/EditProfile";
-import Campaign from "./Components/Campaign";
 import CreateCampaign from "./Components/CreateCampaign";
 function App() {
   const user = useSelector(SelectUser);
@@ -34,7 +33,6 @@ function App() {
             <Route path="/forget-password" element={<ForgetPassword />} />
             <Route path="/edit-profile" element={<EditProfile />} />
 
-            <Route path="/campaign" element={<Campaign />} />
             <Route path="/create-campaign" element={<CreateCampaign />} />
             
              </Route>
