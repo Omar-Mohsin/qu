@@ -21,8 +21,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Navbar />}>
-            <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home />} />
+            <Route index path="/login" element={<Login />} />
             <Route
               path="/profile"
               element={<Profile />  
