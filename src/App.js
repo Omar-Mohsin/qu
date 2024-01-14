@@ -1,8 +1,6 @@
 import React from "react";
-import { SelectUser } from "./redux/auth/authSlice";
-import { useSelector } from "react-redux";
 import Home from "./Components/Home";
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from "./Components/Navbar";
 import Profile from "./Components/Profile"; 
 import Login from "./Components/Login";
@@ -12,7 +10,6 @@ import ForgetPassword from "./Components/ForgetPassword";
 import EditProfile from "./Components/EditProfile";
 import CreateCampaign from "./Components/CreateCampaign";
 function App() {
-  const user = useSelector(SelectUser);
 
   return (
     <>

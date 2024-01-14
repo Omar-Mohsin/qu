@@ -47,62 +47,57 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div>
       {user ? (
-        <div className="flex flex-col items-center">
-          <h1 className="text-3xl text-black-500 mb-4 mt-10">
-            Welcome, {userDetails?.full_name}
-          </h1>
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">My Campaigns</h2>
-            {myCampaign?.map((campaign) => (
-              <div key={campaign.id} className="mb-6 p-4 border rounded-lg">
-                <p className="text-xl font-semibold mb-2">
-                  {campaign.campaign_name}
-                </p>
-                <p className="mb-2">{campaign.description}</p>
-                <p className="mb-2">
-                  <span className="font-semibold">Start Date:</span>{" "}
-                  {campaign.start_date}
-                </p>
-                <p className="mb-2">
-                  <span className="font-semibold">End Date:</span>{" "}
-                  {campaign.end_date}
-                </p>
-                <div className="mb-2">
-                  <span className="font-semibold">Keywords:</span>{" "}
-                  {campaign.target.keywords?.map((keyword, index) => (
-                    <span
-                      key={index}
-                      className="bg-blue-200 text-blue-800 px-2 py-1 rounded-full mr-2"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
-                <div>
-                  <span className="font-semibold">Platforms:</span>{" "}
-                  {campaign.platform?.map((platform , index) => (
-                    <span key={index} className="text-gray-600 mr-2">
-                      {platform}
-                    </span>
-                  ))}
-                </div>
+        <div >
+          <div >
+            <div >
+              <h1 className="text-2xl font-semibold">Latest Campaigns</h1>
+              <div className="flex space-x-4">
+                <button className="bg-blue-500 text-white py-2 px-4 rounded">
+                  Import a Campaign
+                </button>
+                <Link to="/create-campaign" className="text-blue-500">
+                  Create a Campaign
+                </Link>
               </div>
-            ))}
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              <Link to="/create-campaign">Create Campaign</Link>
-            </button>
+            </div>
+            <div className="bg-white p-4 shadow-md rounded-md">
+              {/* Add your campaign details here */}
+            </div>
+          </div>
+
+          <div className="w-1/2 space-y-4 flex-end">
+            <h1 className="text-2xl font-semibold">Other Workspaces</h1>
+
+            <div className="flex items-center space-x-4 mt-4">
+              <div>
+                <h2 className="text-lg font-semibold">Workspace 2</h2>
+              </div>
+
+              <div className="flex flex-col">
+                <p>Additional details</p>
+                <p>More details</p>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                {/* Add your icons here */}
+              </div>
+
+              <button className="bg-blue-500 text-white py-2 px-4 rounded">
+                Switch Workspace
+              </button>
+            </div>
           </div>
         </div>
       ) : (
-        <>
-        <Link to={"/login"}>
-          <h1 className="text-4xl mb-6 text-red-600 font-semibold">
-            Please Login
-          </h1>
-        </Link>
-      </>
+        <div className="text-center flex justify-center">
+          <Link to={"/login"}>
+            <h1 className="text-4xl mb-6 text-red-600 font-semibold">
+              Please Login
+            </h1>
+          </Link>
+        </div>
       )}
     </div>
   );

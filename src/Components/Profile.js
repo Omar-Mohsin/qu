@@ -21,7 +21,7 @@ function Profile() {
 
   const handleLogout = () => {
     dispatch(removeUser());
-    navigate("/");
+    navigate("/login");
   };
 
   return (
