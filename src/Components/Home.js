@@ -47,53 +47,60 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col p-4 md:p-8 mt-12 md:mt-40">
       {user ? (
-        <div >
-          <div >
-            <div >
-              <h1 className="text-2xl font-semibold">Latest Campaigns</h1>
-              <div className="flex space-x-4">
-                <button className="bg-blue-500 text-white py-2 px-4 rounded">
+        <div className="flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 md:mr-4">
+            <div className="flex justify-between items-center">
+              <h1 className="text-2xl md:text-3xl mb-4">Latest Campaigns</h1>
+              <div className="flex gap-4 md:mr-8 mt-1">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">
                   Import a Campaign
                 </button>
-                <Link to="/create-campaign" className="text-blue-500">
-                  Create a Campaign
+                <Link to="/create-campaign">
+                  <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md text-sm">
+                    Create a Campaign
+                  </button>
                 </Link>
               </div>
             </div>
-            <div className="bg-white p-4 shadow-md rounded-md">
-              {/* Add your campaign details here */}
+
+            {/* Placeholder content */}
+            <div>
+              <p>Your campaign content goes here.</p>
             </div>
           </div>
 
-          <div className="w-1/2 space-y-4 flex-end">
-            <h1 className="text-2xl font-semibold">Other Workspaces</h1>
+          {/* Vertical Line */}
+          <div className="w-1 h-18 bg-gray-500 mx-4"></div>
 
-            <div className="flex items-center space-x-4 mt-4">
+          {/* Workspace section */}
+          <div className="w-full md:w-2/4 pl-0 md:pl-8 md:mt-0 mt-8">
+            <h1 className="text-2xl md:text-3xl mb-4">Other Workspaces</h1>
+            <div className="mb-4 flex justify-between items-center">
               <div>
-                <h2 className="text-lg font-semibold">Workspace 2</h2>
+                <h2 className="text-lg font-bold">Workspace 2</h2>
               </div>
 
               <div className="flex flex-col">
-                <p>Additional details</p>
-                <p>More details</p>
+                <p className="text-sm text-gray-600">Created at</p>
+                <p className="text-sm text-gray-600">Created by</p>
               </div>
-
-              <div className="flex items-center space-x-2">
-                {/* Add your icons here */}
+              {/* Placeholder for icons */}
+              <div className="flex items-center gap-2">
+                <span className="text-2xl"></span>
+                <span className="text-2xl"></span>
               </div>
-
-              <button className="bg-blue-500 text-white py-2 px-4 rounded">
+              <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md">
                 Switch Workspace
               </button>
             </div>
           </div>
         </div>
       ) : (
-        <div className="text-center flex justify-center">
-          <Link to={"/login"}>
-            <h1 className="text-4xl mb-6 text-red-600 font-semibold">
+        <div className="text-center w-full md:w-1/2 pr-0 md:pr-8">
+          <Link to="/login">
+            <h1 className="text-2xl md:text-4xl mb-6 text-red-600 font-semibold">
               Please Login
             </h1>
           </Link>
