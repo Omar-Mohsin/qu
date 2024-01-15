@@ -43,7 +43,6 @@ function CreateCampaign() {
   };
 
   const onChangeValues = (event, newValue) => {
-    console.log(newValue);
 
     setValues(newValue);
   };
@@ -98,7 +97,6 @@ function CreateCampaign() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-4 md:p-8 rounded-lg md:w-2/3 lg:w-1/2 xl:w-1/3 text-gray-800 flex flex-col items-center space-y-4 overflow-auto">
-        {" "}
         {user ? (
           <div className="w-full max-w-md">
             {error && (

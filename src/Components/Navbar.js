@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SelectUser } from "../redux/auth/authSlice";
-
+import LogoMenu from "./LogoMenu";
 function Navbar() {
   const user = useSelector(SelectUser);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,7 +14,10 @@ function Navbar() {
   return (
     <>
       <div className="h-16 flex justify-between items-center px-4 md:px-6 text-white">
-        <div>
+       
+        <div className="flex items-center">
+      
+        <LogoMenu />
           <Link to="/">
             <h1 className="text-lg md:text-2xl font-bold text-black">
               Scavenger
@@ -22,7 +25,7 @@ function Navbar() {
           </Link>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center mt-2">
           {user ? (
             <>
               <button className="hidden md:block">
@@ -50,7 +53,7 @@ function Navbar() {
             </button>
           )}
 
-          {/* Mobile Menu Toggle Button */}
+       
           <button
             className="md:hidden bg-blue-500 ml-4 px-4 py-2 rounded-md hover:bg-blue-700"
             onClick={toggleMobileMenu}
@@ -60,10 +63,19 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-gray-800 text-white p-4">
-          <Link
+         
+          {!user ? (
+            <Link
+              to="#"
+              className="block py-2 px-4 text-sm hover:bg-gray-700"
+            >
+              Try now
+            </Link>
+          ) : (
+            <>
+            <Link
             to="#"
             className="block py-2 px-4 text-sm hover:bg-gray-700"
           >
@@ -75,13 +87,7 @@ function Navbar() {
           >
             Account
           </Link>
-          {!user && (
-            <Link
-              to="#"
-              className="block py-2 px-4 text-sm hover:bg-gray-700"
-            >
-              Try now
-            </Link>
+          </>
           )}
         </div>
       )}
